@@ -27,6 +27,7 @@ namespace Isbak.KullaniciYonetimi.MVC
                 {
                     System.Web.Security.FormsIdentity id;
                     id = (System.Web.Security.FormsIdentity)HttpContext.Current.User.Identity;
+                    //hi
                     string[] r = null;
                     string[] roles = _roleService.GetRoles(r);
                     HttpContext.Current.User = new System.Security.Principal.GenericPrincipal(id, roles);
