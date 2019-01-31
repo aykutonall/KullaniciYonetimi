@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if(HttpContext.Current.User.IsInRole("Admin"))
+{
+    <p>Sen Admin'sin.</p>
+}else if(HttpContext.Current.User.IsInRole("SystemAdmin"))
+{
+    <p>Sen SystemAdmin'sin.</p>
+}else
+{
+    <p>Sen sıradan bir User'sın.</p>
+}
