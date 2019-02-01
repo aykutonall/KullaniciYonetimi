@@ -21,6 +21,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+
                     @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {
                         <li><a href="#"><p>Welcome, @HttpContext.Current.User.Identity.Name</p></a></li>

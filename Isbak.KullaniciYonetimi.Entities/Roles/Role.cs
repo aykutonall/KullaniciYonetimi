@@ -13,6 +13,6 @@ namespace Isbak.KullaniciYonetimi.Entities.Roles
     {
         public int RoleId { get; set; }
         public string RoleName { get; set; }
-        public ICollection<User> User { get; set; }
+        public List<User> Users { get; set; }
     }
 }

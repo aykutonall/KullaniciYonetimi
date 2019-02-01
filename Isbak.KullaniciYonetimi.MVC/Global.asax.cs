@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace Isbak.KullaniciYonetimi.MVC
 {
@@ -19,7 +20,7 @@ namespace Isbak.KullaniciYonetimi.MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
-        public void Application_AuthenticateRequest(Object src, EventArgs e)
+        public void Application_AuthenticateRequest(Object sender, EventArgs e)
         {
             if (!(HttpContext.Current.User == null))
             {
@@ -27,9 +28,12 @@ namespace Isbak.KullaniciYonetimi.MVC
                 {
                     System.Web.Security.FormsIdentity id;
                     id = (System.Web.Security.FormsIdentity)HttpContext.Current.User.Identity;
-                    //hi
-                    string[] r = null;
-                    string[] roles = _roleService.GetRoles(r);
+
+                    FormsAuthenticationTicket ticket = id.Ticket;
+                    string userData = ticket.UserData;
+                    string[] roles = userData.Split(',');
+                    //string[] roles = null;
+                    //roles = _roleService.GetRoles(roles);
                     HttpContext.Current.User = new System.Security.Principal.GenericPrincipal(id, roles);
                 }
             }

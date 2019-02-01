@@ -29,13 +29,11 @@ namespace Isbak.KullaniciYonetimi.Services
             _uow = new EFUnitOfWork(_dbContext);
         }
 
-        public string[] GetRoles(string[] roleName)
+        public List<Role> GetRoles(int rolId)
         {
-            var roles = _roleRepository.GetAll();
-
-            roleName = roles.Select(x => x.RoleName).ToArray();
+            List<Role> roles = _roleRepository.GetAll(x => x.RoleId == rolId).ToList();
             _uow.SaveChanges();
-            return roleName;
+            return roles;
         }
     }
 }

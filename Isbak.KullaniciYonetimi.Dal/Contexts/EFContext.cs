@@ -20,15 +20,20 @@ namespace Isbak.KullaniciYonetimi.Dal.Contexts
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<User>()
+            //    .HasMany(u => u.Role)// user can have many roles
+            //    .WithMany(r => r.User)// role contains multiple users in basic
+            //    .Map(m =>
+            //    {
+            //        m.ToTable("UserRoles");
+            //        m.MapLeftKey("UserId");
+            //        m.MapRightKey("RoleId");
+            //    });
+
             modelBuilder.Entity<User>()
-                .HasMany(u => u.Role)// user can have many roles
-                .WithMany(r => r.User)// role contains multiple users in basic
-                .Map(m =>
-                {
-                    m.ToTable("UserRoles");
-                    m.MapLeftKey("UserId");
-                    m.MapRightKey("RoleId");
-                });
+           .HasRequired<Role>(s => s.Role)
+           .WithMany(g => g.Users)
+           .HasForeignKey<int>(s => s.RolId);
         }
     }
 }

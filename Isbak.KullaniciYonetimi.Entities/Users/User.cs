@@ -15,7 +15,9 @@ namespace Isbak.KullaniciYonetimi.Entities.Users
         public int UserId { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }        
-        public virtual ICollection<Role> Role { get; set; }
+        public string Password { get; set; }
+        public int RolId { get; set; }
+
+        public Role Role { get; set; }
     }
 }
